@@ -12,7 +12,7 @@
             <connections>
                 <outlet property="ac" destination="JOd-WO-jAS" id="Vz8-Mz-JoQ"/>
                 <outlet property="add" destination="Dnc-nD-44e" id="w48-Qv-aaq"/>
-                <outlet property="ansLabel" destination="Nqw-jA-pLZ" id="BxG-rt-BWW"/>
+                <outlet property="curValLabel" destination="Nqw-jA-pLZ" id="EVg-oK-eif"/>
                 <outlet property="dec" destination="cYy-va-mb5" id="Gei-MF-JGc"/>
                 <outlet property="div" destination="Iaa-4M-aiS" id="QkW-9h-T2x"/>
                 <outlet property="eight" destination="l2j-Hu-igZ" id="END-I5-Jfy"/>
