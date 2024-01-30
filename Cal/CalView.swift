@@ -68,15 +68,33 @@ class CalView: UIView {
     var opStk: [String] = [] // Operator stack
     var fStk: [String] = [] // formula stack
     
-    //MARK: 
+    //MARK: life cycle
                 
     override func awakeFromNib() {
         for btn in btns {
             btn.layer.cornerRadius = 20;
+            //adjust text to btn width
+            btn.titleLabel?.numberOfLines = 1
+            btn.titleLabel?.adjustsFontSizeToFitWidth = true
+            btn.titleLabel?.lineBreakMode = .byClipping
+            btn.titleLabel?.textAlignment = .center
             btn.addTarget(self, action: #selector(onTap(_:)), for: .touchUpInside)
         }
     }
-    
+    //MARK: public
+    public func getCurAcc() -> String {
+        return self.acc.formatCommaStr()
+    }
+    public func handleTransferFromAnotherCal(_ str: String) {
+        //parse string and input
+        for c in Array(str){
+            self.handleInput(String(c))
+        }
+    }
+    public func clear() {
+        self.resetAllDefault()
+        updateUI()
+    }
 
     //MARK: button touch up inside action
     @objc func onTap(_ sender: UIButton){
@@ -102,7 +120,13 @@ class CalView: UIView {
 
         }
         else if sender == self.ac {
-            self.resetAllDefault()
+            if self.numStk.count > 0 || self.acc != 0 {
+                self.userInput = ""
+                self.acc = 0
+            }
+            else {
+                self.resetAllDefault()
+            }
             updateUI()
         }
         else if sender == self.neg {
@@ -123,12 +147,7 @@ class CalView: UIView {
             handleInput(String(d))
         }
         
-        if self.numStk.count > 0{
-            self.ac.titleLabel?.text = "C"
-        }
-        else {
-            self.ac.titleLabel?.text = "AC"
-        }
+        
         
     }
     //MARK: private
@@ -177,6 +196,12 @@ class CalView: UIView {
         let t:String = self.fStk.reduce("", {(str, n) ->String in return str+n})
         self.formula.text = t
         
+        if self.numStk.count > 0 || self.acc != 0 {
+            self.ac.titleLabel?.text = "C"
+        }
+        else {
+            self.ac.titleLabel?.text = "AC"
+        }
     }
     private func doOp(_ newop:String){
         

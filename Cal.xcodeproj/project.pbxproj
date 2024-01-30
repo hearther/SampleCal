@@ -17,6 +17,8 @@
 		B004171B2B5E2367005479EC /* CalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00417192B5E2367005479EC /* CalVC.xib */; };
 		B00417212B635B3B005479EC /* CalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00417202B635B3B005479EC /* CalView.swift */; };
 		B0F159FA2B68AEC80026D0E2 /* CalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F159F92B68AEC80026D0E2 /* CalView.xib */; };
+		B0F159FC2B68E0E50026D0E2 /* Formatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */; };
+		B0F159FE2B68E10E0026D0E2 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		B00417192B5E2367005479EC /* CalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalVC.xib; sourceTree = "<group>"; };
 		B00417202B635B3B005479EC /* CalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalView.swift; sourceTree = "<group>"; };
 		B0F159F92B68AEC80026D0E2 /* CalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalView.xib; sourceTree = "<group>"; };
+		B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Ext.swift"; sourceTree = "<group>"; };
+		B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				B00416ED2B5E21E8005479EC /* Assets.xcassets */,
 				B00416EF2B5E21E8005479EC /* LaunchScreen.storyboard */,
 				B00416F22B5E21E8005479EC /* Info.plist */,
+				B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */,
+				B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */,
 			);
 			path = Cal;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 				TargetAttributes = {
 					B00416E02B5E21E6005479EC = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					B00416F62B5E21E8005479EC = {
 						CreatedOnToolsVersion = 15.2;
@@ -264,7 +271,9 @@
 			files = (
 				B004171A2B5E2367005479EC /* CalVC.swift in Sources */,
 				B00416E52B5E21E6005479EC /* AppDelegate.swift in Sources */,
+				B0F159FC2B68E0E50026D0E2 /* Formatter+Ext.swift in Sources */,
 				B00417212B635B3B005479EC /* CalView.swift in Sources */,
+				B0F159FE2B68E10E0026D0E2 /* Double+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B93633Y3SC;
@@ -455,6 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bunnylintw.Cal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -465,6 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B93633Y3SC;
