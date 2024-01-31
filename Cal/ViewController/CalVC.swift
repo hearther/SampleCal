@@ -48,12 +48,17 @@ class CalVC: UIViewController {
         self.containV2.addSubview(c2)
         
         for btn in btns {
-            btn.layer.cornerRadius = 20;
+            btn.layer.cornerRadius = min(20, max(btn.frame.height/4, 5));
             //adjust text to btn width
             btn.titleLabel?.numberOfLines = 1
             btn.titleLabel?.adjustsFontSizeToFitWidth = true
             btn.titleLabel?.lineBreakMode = .byClipping
             btn.titleLabel?.textAlignment = .center
+        }
+    }
+    override func viewLayoutMarginsDidChange() {
+        for btn in btns {
+            btn.layer.cornerRadius = min(20, max(btn.frame.height/4, 5));
         }
     }
     

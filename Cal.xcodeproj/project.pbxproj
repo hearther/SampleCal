@@ -10,7 +10,7 @@
 		B00416E52B5E21E6005479EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00416E42B5E21E6005479EC /* AppDelegate.swift */; };
 		B00416EE2B5E21E8005479EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B00416ED2B5E21E8005479EC /* Assets.xcassets */; };
 		B00416F12B5E21E8005479EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B00416EF2B5E21E8005479EC /* LaunchScreen.storyboard */; };
-		B00416FC2B5E21E8005479EC /* CalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00416FB2B5E21E8005479EC /* CalTests.swift */; };
+		B00416FC2B5E21E8005479EC /* CalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00416FB2B5E21E8005479EC /* CalModelTests.swift */; };
 		B00417062B5E21E8005479EC /* CalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00417052B5E21E8005479EC /* CalUITests.swift */; };
 		B00417082B5E21E8005479EC /* CalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00417072B5E21E8005479EC /* CalUITestsLaunchTests.swift */; };
 		B004171A2B5E2367005479EC /* CalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00417182B5E2367005479EC /* CalVC.swift */; };
@@ -19,6 +19,7 @@
 		B0F159FA2B68AEC80026D0E2 /* CalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F159F92B68AEC80026D0E2 /* CalView.xib */; };
 		B0F159FC2B68E0E50026D0E2 /* Formatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */; };
 		B0F159FE2B68E10E0026D0E2 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */; };
+		B0F15A042B69058B0026D0E2 /* CalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F15A032B69058B0026D0E2 /* CalModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +46,7 @@
 		B00416F02B5E21E8005479EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B00416F22B5E21E8005479EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B00416F72B5E21E8005479EC /* CalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B00416FB2B5E21E8005479EC /* CalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalTests.swift; sourceTree = "<group>"; };
+		B00416FB2B5E21E8005479EC /* CalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalModelTests.swift; sourceTree = "<group>"; };
 		B00417012B5E21E8005479EC /* CalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00417052B5E21E8005479EC /* CalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalUITests.swift; sourceTree = "<group>"; };
 		B00417072B5E21E8005479EC /* CalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		B0F159F92B68AEC80026D0E2 /* CalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalView.xib; sourceTree = "<group>"; };
 		B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Ext.swift"; sourceTree = "<group>"; };
 		B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		B0F15A032B69058B0026D0E2 /* CalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,16 +107,14 @@
 		B00416E32B5E21E6005479EC /* Cal */ = {
 			isa = PBXGroup;
 			children = (
+				B0F159FF2B6904D70026D0E2 /* Extension */,
 				B00416E42B5E21E6005479EC /* AppDelegate.swift */,
-				B00417182B5E2367005479EC /* CalVC.swift */,
-				B00417192B5E2367005479EC /* CalVC.xib */,
-				B00417202B635B3B005479EC /* CalView.swift */,
-				B0F159F92B68AEC80026D0E2 /* CalView.xib */,
+				B0F15A002B6905340026D0E2 /* ViewController */,
+				B0F15A012B69053F0026D0E2 /* View */,
+				B0F15A022B6905780026D0E2 /* Model */,
 				B00416ED2B5E21E8005479EC /* Assets.xcassets */,
 				B00416EF2B5E21E8005479EC /* LaunchScreen.storyboard */,
 				B00416F22B5E21E8005479EC /* Info.plist */,
-				B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */,
-				B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */,
 			);
 			path = Cal;
 			sourceTree = "<group>";
@@ -122,7 +122,7 @@
 		B00416FA2B5E21E8005479EC /* CalTests */ = {
 			isa = PBXGroup;
 			children = (
-				B00416FB2B5E21E8005479EC /* CalTests.swift */,
+				B00416FB2B5E21E8005479EC /* CalModelTests.swift */,
 			);
 			path = CalTests;
 			sourceTree = "<group>";
@@ -134,6 +134,41 @@
 				B00417072B5E21E8005479EC /* CalUITestsLaunchTests.swift */,
 			);
 			path = CalUITests;
+			sourceTree = "<group>";
+		};
+		B0F159FF2B6904D70026D0E2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B0F159FB2B68E0E50026D0E2 /* Formatter+Ext.swift */,
+				B0F159FD2B68E10E0026D0E2 /* Double+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B0F15A002B6905340026D0E2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B00417182B5E2367005479EC /* CalVC.swift */,
+				B00417192B5E2367005479EC /* CalVC.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B0F15A012B69053F0026D0E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B00417202B635B3B005479EC /* CalView.swift */,
+				B0F159F92B68AEC80026D0E2 /* CalView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B0F15A022B6905780026D0E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B0F15A032B69058B0026D0E2 /* CalModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +306,7 @@
 			files = (
 				B004171A2B5E2367005479EC /* CalVC.swift in Sources */,
 				B00416E52B5E21E6005479EC /* AppDelegate.swift in Sources */,
+				B0F15A042B69058B0026D0E2 /* CalModel.swift in Sources */,
 				B0F159FC2B68E0E50026D0E2 /* Formatter+Ext.swift in Sources */,
 				B00417212B635B3B005479EC /* CalView.swift in Sources */,
 				B0F159FE2B68E10E0026D0E2 /* Double+Ext.swift in Sources */,
@@ -281,7 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B00416FC2B5E21E8005479EC /* CalTests.swift in Sources */,
+				B00416FC2B5E21E8005479EC /* CalModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
