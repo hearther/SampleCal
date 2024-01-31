@@ -9,15 +9,11 @@
 import UIKit
 
 extension Double {
-    func formatCommaStr(justTapDec just:Bool = false) -> String {
+    func formatCommaStr() -> String {
         var ret = ""
-        if self == floor(self) && !just{
+        if self == floor(self){
             //int
             ret = Formatter.withCommaSeparator.string(for: Int(self)) ?? ""
-        }
-        else if just == true{
-            let t = Formatter.withCommaSeparator.string(for: Int(self)) ?? ""
-            ret = t+"."
         }
         else {
             ret = String(self)

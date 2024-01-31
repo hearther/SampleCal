@@ -44,6 +44,7 @@ class CalView: UIView {
             
     //MARK: life cycle
     override func awakeFromNib() {
+        self.model.view = self
         for btn in btns {
             btn.layer.cornerRadius = min(20, max(btn.frame.height/4, 5));
             //adjust text to btn width
@@ -74,24 +75,33 @@ class CalView: UIView {
 
     //MARK: button touch up inside action
     @objc func onTap(_ sender: UIButton){
+        
+        if self.model.isFormulaEnd()
+        {
+            let s = self.model.getCurAccString()
+            self.model.resetAll()
+            self.model.handleTransferFromAnotherCal(s)
+        }
+        
+               
         if self.opbtns.contains(sender){
                         
             if sender == self.add {
-                self.model.doOp("+")
+                self.model.handleInput("+")
             }
             else if sender == self.sub {
-                self.model.doOp("-")
+                self.model.handleInput("-")
             }
             else if sender == self.mult {
-                self.model.doOp("*")
+                self.model.handleInput("*")
             }
             else if sender == self.div {
-                self.model.doOp("/")
+                self.model.handleInput("/")
             }
             
         }
         else if sender == self.eq {
-            self.model.doEq(sender)
+            self.model.handleInput("=")
 
         }
         else if sender == self.ac {
@@ -105,16 +115,16 @@ class CalView: UIView {
             self.updateUI()
         }
         else if sender == self.neg {
-            self.model.handleInput("-")
+            self.model.handleInput("neg")
         }
         else if sender == self.dec {
             self.model.handleInput(".")
         }
         else if sender == self.per {
-            self.model.doOp("%")
+            self.model.handleInput("%")
         }
         else {
-            var str = self.model.getCurAccString()
+            let str = self.model.getCurAccString()
             //Portrait input max 9 digits
             if str.count >= 9 {
                 return
@@ -127,7 +137,7 @@ class CalView: UIView {
            
     func updateUI(_ justInputDec:Bool = false){
         
-        guard !self.model.isCurAccValid() else {
+        guard self.model.isCurAccValid() else {
             self.curValLabel.text = "ERR"
             self.model.resetAll()
             return

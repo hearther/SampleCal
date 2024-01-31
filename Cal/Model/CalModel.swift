@@ -64,6 +64,10 @@ class CalModel {
         return self.fStk.reduce("", {(str, n) ->String in return str+n})
     }
     
+    func isFormulaEnd() -> Bool{
+        return self.fStk.contains("=")
+    }
+    
     func resetAcc (){
         self.userInput = ""
         self.acc = 0.0
@@ -79,17 +83,27 @@ class CalModel {
     }
     func handleInput(_ input:String){
         
+        
+        if input == "+" || input == "-" || input == "*" || input == "/" || input == "%" {
+            self.doOp(input)
+            return
+        }
+        else if input == "="{
+            self.doEq(true)
+            return
+        }
+        
         //handle .
         if input == "." && self.userInput.firstIndex(of: ".") != nil {
             return
         }
         
-        if input == "-"{
+        if input == "neg"{
             if self.userInput.hasPrefix("-"){
                 self.userInput = String(self.userInput[self.userInput.index(after: self.userInput.startIndex)...])
             }
             else {
-                self.userInput = input + self.userInput
+                self.userInput = "-" + self.userInput
             }
         }
         else {
@@ -98,28 +112,33 @@ class CalModel {
         acc = Double((self.userInput as NSString).doubleValue)
         if self.acc.isInfinite || self.acc.isNaN {
             self.resetAll()
+            self.view?.updateUI()
         }
-        self.view?.updateUI(input==".")
+        else {
+            self.view?.updateUI(input==".")
+        }
     }
     
-    func doOp(_ newop:String){
+    private func doOp(_ newop:String){
+        
+        //%
+        if (newop == "%"){
+            self.acc /= 100
+            self.userInput = String(self.acc)
+            self.view?.updateUI()
+            return
+        }
+        
         
         if self.acc != 0{
             //continue with last calculation
             self.fStk.append(self.acc.formatCommaStr())
-        }
+        }        
         else if self.userInput == ""{
             //just start with ops
             self.fStk.append("0")
         }
         else {
-            //%
-            if (newop == "%"){
-                self.acc /= 100
-                self.view?.updateUI()
-                return
-            }
-                                    
             if self.numStk.count > 0 && self.opStk.count > 0
             {
                 let lastOp = self.opStk.last!
@@ -141,13 +160,13 @@ class CalModel {
         self.view?.updateUI()
     }
     
-    func doEq(_ sender:UIButton? = nil) {
+    private func doEq(_ formulaEnd:Bool = false) {
         
         if self.userInput == ""{
             return
         }
         
-        if sender != nil && self.userInput != "" {
+        if formulaEnd && self.userInput != "" {
             self.fStk.append(self.acc.formatCommaStr())
         }
                 
@@ -165,14 +184,13 @@ class CalModel {
             }
         }
         
-        if sender != nil {
+        if formulaEnd && self.isCurAccValid() {
             //complete full formula
-            self.fStk.append("="+self.acc.formatCommaStr())
+            self.fStk.append("=")
+            self.fStk.append(self.acc.formatCommaStr())
         }
         
         self.view?.updateUI()
-        self.userInput = ""
-        self.fStk.removeAll()
     }
     
     //MARK: private
