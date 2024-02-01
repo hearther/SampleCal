@@ -150,19 +150,17 @@ class CalView: UIView {
         }
     }
            
-    func updateUI(_ justInputDec:Bool = false){
+    func updateUI(){
         
         guard self.model.isCurAccValid() else {
             self.curValLabel.text = "ERR"
+            self.formula.text=""
             self.model.resetAll()
             return
         }
                 
         var (str, _) = self.getAccString()
-        
-        if justInputDec{
-            str += "."
-        }
+                
         self.curValLabel.text = str
         self.formula.text = self.model.getFormulaString()
         

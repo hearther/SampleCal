@@ -33,6 +33,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4r-7T-GDg" userLabel="toLButton">
                             <rect key="frame" x="11.333333333333371" y="0.0" width="51" height="55.666666666666664"/>
                             <color key="backgroundColor" red="0.25490196078431371" green="0.56862745098039214" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="toL"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.fill" catalog="system" title=""/>
@@ -43,6 +44,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1p-rL-cc2" userLabel="toRButton ">
                             <rect key="frame" x="11.333333333333371" y="63.666666666666671" width="51" height="55.666666666666671"/>
                             <color key="backgroundColor" red="0.25490196079999999" green="0.56862745100000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="toR"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="arrowshape.right.fill" catalog="system" title=""/>
@@ -67,6 +69,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4Z-xF-hce">
                             <rect key="frame" x="8.3333333333333677" y="254.6666666666666" width="56.666666666666657" height="55.666666666666657"/>
                             <color key="backgroundColor" red="0.60784313725490191" green="0.60784313729999995" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="DEL"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="DEL">
                                 <fontDescription key="titleFontDescription" type="system" pointSize="18"/>

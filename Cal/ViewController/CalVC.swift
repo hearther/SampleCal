@@ -17,9 +17,9 @@ import UIKit
 
 class CalVC: UIViewController {
     @IBOutlet var containV1: UIView!
-    var cal1: CalView?
+    var cal1: CalView!
     @IBOutlet var containV2: UIView!
-    var cal2: CalView?
+    var cal2: CalView!
     
     @IBOutlet var toL: UIButton!
     @IBOutlet var toR: UIButton!
@@ -67,12 +67,18 @@ class CalVC: UIViewController {
     
     //MARK: button action
     @IBAction func tapToL(){
-        self.cal1?.handleTransferAccFromAnotherCal(self.cal2?.getAcc() ?? 0)
+        guard let t = self.cal2?.getAcc() else {
+            return
+        }
+        self.cal1?.handleTransferAccFromAnotherCal(t)
         
     }
     
     @IBAction func tapToR(){
-        self.cal2?.handleTransferAccFromAnotherCal(self.cal1?.getAcc() ?? 0)
+        guard let t = self.cal1?.getAcc() else {
+            return
+        }
+        self.cal2?.handleTransferAccFromAnotherCal(t)
     }
     
     @IBAction func tapDEL(){

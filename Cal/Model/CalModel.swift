@@ -39,6 +39,9 @@ class CalModel {
     private var fStk: [String] = [] // formula stack
     private var acc:Double = 0.0
     
+    private var startDec:Bool = false
+    private var zeroCntAfterDec:Int = 0
+    
     //MARK: public
     func isCurAccValid() -> Bool {
         return !self.acc.isInfinite && !self.acc.isNaN
@@ -47,8 +50,17 @@ class CalModel {
         return self.acc
     }
     func getAccString() -> String {
-        let str = self.acc.formatCommaStr()
-        return str == nil ? "" : str!
+        guard var str = self.acc.formatCommaStr() else {
+            return ""
+        }
+        
+        if zeroCntAfterDec > 0 {
+            str += "."
+            for _ in 0..<zeroCntAfterDec {
+                str += "0"
+            }
+        }
+        return str
     }
     func handleTransferAccFromAnotherCal(_ acc: Double) {
         self.acc = acc
@@ -74,7 +86,8 @@ class CalModel {
     func resetAcc (){
         self.userInput = ""
         self.acc = 0.0
-        
+        self.startDec = false
+        self.zeroCntAfterDec = 0
     }
     
     func resetAll (){
@@ -97,8 +110,19 @@ class CalModel {
         }
         
         //handle .
-        if input == "." && self.userInput.firstIndex(of: ".") != nil {
-            return
+        if input == "." {
+            if self.startDec{
+                return
+            }
+            else {
+                self.startDec = true
+            }
+        }
+        if self.startDec && input == "0" && acc == floor(acc) {
+            self.zeroCntAfterDec += 1
+        }
+        else {
+            self.zeroCntAfterDec = 0
         }
         
         if input == "neg"{
@@ -112,14 +136,12 @@ class CalModel {
         else {
             self.userInput += input
         }
+        
         acc = Double(self.userInput) ?? 0.0
         if self.acc.isInfinite || self.acc.isNaN {
-            self.resetAll()
-            self.view?.updateUI()
+            self.resetAll()            
         }
-        else {
-            self.view?.updateUI(input==".")
-        }
+        self.view?.updateUI()
     }
     
     private func doOp(_ newop:String){
