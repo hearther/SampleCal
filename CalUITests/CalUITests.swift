@@ -38,4 +38,57 @@ final class CalUITests: XCTestCase {
             }
         }
     }
+    
+    func testInputNumber() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        let c1 = app.otherElements["c1"]
+        XCTAssertEqual(c1.buttons["AC"].label, "AC")
+        
+        //123456789
+        c1.buttons["1"].tap()
+        var textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "1")
+        c1.buttons["2"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "12")
+        c1.buttons["3"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "123")
+        c1.buttons["4"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "1,234")
+        c1.buttons["5"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "12,345")
+        c1.buttons["6"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "123,456")
+        c1.buttons["7"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "1,234,567")
+        c1.buttons["8"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "12,345,678")
+        c1.buttons["9"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "123,456,789")
+        c1.buttons["0"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "123,456,789")
+        XCTAssertEqual(c1.buttons["AC"].label, "C")
+        c1.buttons["AC"].tap()
+        XCTAssertEqual(c1.buttons["AC"].label, "AC")
+        
+        //10
+        c1.buttons["1"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "1")
+        c1.buttons["0"].tap()
+        textInLabel = c1.staticTexts["curVal"].label
+        XCTAssertEqual(textInLabel, "10")
+        XCTAssertEqual(c1.buttons["AC"].label, "C")
+        
+    }
 }

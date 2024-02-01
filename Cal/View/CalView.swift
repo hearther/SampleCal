@@ -54,6 +54,9 @@ class CalView: UIView {
             btn.titleLabel?.textAlignment = .center
             btn.addTarget(self, action: #selector(onTap(_:)), for: .touchUpInside)
         }
+        curValLabel.accessibilityIdentifier = "curVal"
+        formula.accessibilityIdentifier = "formula"
+        
     }
     override func layoutSubviews() {
         for btn in btns {
@@ -62,11 +65,23 @@ class CalView: UIView {
     }
     
     //MARK: public
-    public func getCurAcc() -> String {
-        return self.model.getCurAccString()
+    //
+    public func getAcc() -> (Double){
+        return self.model.getAcc()
     }
-    public func handleTransferFromAnotherCal(_ str: String) {
-        self.model.handleTransferFromAnotherCal(str)
+    public func getAccString() -> (String, Bool) {
+                
+        let str = self.model.getAccString()
+        //Portrait input max 9 digits + 2 comma 12345678.12 ? -1234567890
+        if str.count >= 11 {
+            return (String(str.prefix(11)), true)
+        }
+        else {
+            return (str, false)
+        }
+    }
+    public func handleTransferAccFromAnotherCal(_ acc: Double) {
+        self.model.handleTransferAccFromAnotherCal(acc)
     }
     public func clear() {
         self.model.resetAll()
@@ -78,9 +93,9 @@ class CalView: UIView {
         
         if self.model.isFormulaEnd()
         {
-            let s = self.model.getCurAccString()
+            let s = self.getAcc()
             self.model.resetAll()
-            self.model.handleTransferFromAnotherCal(s)
+            self.model.handleTransferAccFromAnotherCal(s)
         }
         
                
@@ -124,9 +139,9 @@ class CalView: UIView {
             self.model.handleInput("%")
         }
         else {
-            let str = self.model.getCurAccString()
-            //Portrait input max 9 digits
-            if str.count >= 9 {
+            let str = self.model.getAccString()
+            //Portrait input max 9 digits + 2 comma
+            if str.count >= 11 {
                 return
             }
             // 0 1 2 3 4 5 6 7 8 9
@@ -143,7 +158,7 @@ class CalView: UIView {
             return
         }
                 
-        var str = self.model.getCurAccString()
+        var (str, _) = self.getAccString()
         
         if justInputDec{
             str += "."

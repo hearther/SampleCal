@@ -43,14 +43,17 @@ class CalModel {
     func isCurAccValid() -> Bool {
         return !self.acc.isInfinite && !self.acc.isNaN
     }
-    func getCurAccString() -> String {
-        return self.acc.formatCommaStr()
+    func getAcc() -> Double {
+        return self.acc
     }
-    func handleTransferFromAnotherCal(_ str: String) {
-        //parse string and input
-        for c in Array(str){
-            self.handleInput(String(c))
-        }
+    func getAccString() -> String {
+        let str = self.acc.formatCommaStr()
+        return str == nil ? "" : str!
+    }
+    func handleTransferAccFromAnotherCal(_ acc: Double) {
+        self.acc = acc
+        self.userInput = String(self.acc)
+        self.view?.updateUI()
     }
         
     func hadInputSomething()->Bool {
@@ -109,7 +112,7 @@ class CalModel {
         else {
             self.userInput += input
         }
-        acc = Double((self.userInput as NSString).doubleValue)
+        acc = Double(self.userInput) ?? 0.0
         if self.acc.isInfinite || self.acc.isNaN {
             self.resetAll()
             self.view?.updateUI()
@@ -132,24 +135,23 @@ class CalModel {
         
         if self.acc != 0{
             //continue with last calculation
-            self.fStk.append(self.acc.formatCommaStr())
-        }        
+            self.fStk.append(self.getAccString())
+        }
         else if self.userInput == ""{
             //just start with ops
             self.fStk.append("0")
         }
-        else {
-            if self.numStk.count > 0 && self.opStk.count > 0
-            {
-                let lastOp = self.opStk.last!
-                                
-                // first * /  then + -
-                if !((newop == "*" || newop == "/") && (lastOp == "+" || lastOp == "-")) {
-                    self.opStk.removeLast()
-                    let fun = ops[lastOp]
-                    self.acc = fun!(self.numStk.removeLast(), acc)
-                    doEq()
-                }
+        
+        if self.numStk.count > 0 && self.opStk.count > 0
+        {
+            let lastOp = self.opStk.last!
+                            
+            // first * /  then + -
+            if !((newop == "*" || newop == "/") && (lastOp == "+" || lastOp == "-")) {
+                self.opStk.removeLast()
+                let fun = ops[lastOp]
+                self.acc = fun!(self.numStk.removeLast(), acc)
+                doEq()
             }
         }
         
@@ -167,7 +169,7 @@ class CalModel {
         }
         
         if formulaEnd && self.userInput != "" {
-            self.fStk.append(self.acc.formatCommaStr())
+            self.fStk.append(self.getAccString())
         }
                 
         //calculate the result
@@ -187,7 +189,7 @@ class CalModel {
         if formulaEnd && self.isCurAccValid() {
             //complete full formula
             self.fStk.append("=")
-            self.fStk.append(self.acc.formatCommaStr())
+            self.fStk.append(self.getAccString())
         }
         
         self.view?.updateUI()

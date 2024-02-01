@@ -9,11 +9,14 @@
 import UIKit
 
 extension Double {
-    func formatCommaStr() -> String {
-        var ret = ""
+    func formatCommaStr() -> String? {
+        guard !self.isInfinite && !self.isNaN else {
+            return nil
+        }
+        var ret:String? = nil
         if self == floor(self){
             //int
-            ret = Formatter.withCommaSeparator.string(for: Int(self)) ?? ""
+            ret = Formatter.withCommaSeparator.string(for: Int(self))
         }
         else {
             ret = String(self)

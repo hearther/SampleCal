@@ -40,11 +40,14 @@ class CalVC: UIViewController {
         
         self.cal1 = c1
         c1.frame = self.containV1.bounds
+        c1.accessibilityIdentifier = "c1"
         self.containV1.addSubview(c1)
+        
         
         
         self.cal2 = c2
         c2.frame = self.containV2.bounds
+        c2.accessibilityIdentifier = "c2"
         self.containV2.addSubview(c2)
         
         for btn in btns {
@@ -64,12 +67,12 @@ class CalVC: UIViewController {
     
     //MARK: button action
     @IBAction func tapToL(){
-        self.cal1?.handleTransferFromAnotherCal(self.cal2?.getCurAcc() ?? "")
+        self.cal1?.handleTransferAccFromAnotherCal(self.cal2?.getAcc() ?? 0)
         
     }
     
     @IBAction func tapToR(){
-        self.cal2?.handleTransferFromAnotherCal(self.cal1?.getCurAcc() ?? "")
+        self.cal2?.handleTransferAccFromAnotherCal(self.cal1?.getAcc() ?? 0)
     }
     
     @IBAction func tapDEL(){
